@@ -2,10 +2,12 @@
 import { combineReducers } from 'redux';
 // 리듀서 import 
 import user from './user_reducer'
+import loading from './loading_reducer'
 // import chatRoom from './chatRoom_reducer'
 
 const rootReducer = combineReducers({
-    user
+    user,
+    loading
     // chatRoom
 })
 
