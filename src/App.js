@@ -13,6 +13,7 @@ import Loading from './commons/components/Loading'
 import ChatPage from './components/ChatPage/ChatPage'
 import RegisterPage from './components/RegisterPage/RegisterPage'
 import LoginPage from './components/Loginpage/LoginPage'
+import UserPage from './components/UserPage/UserPage'
 
 function App() {
 
@@ -50,6 +51,7 @@ function App() {
         <Route exact path="/" component={Auth(ChatPage, true)} />
         <Route exact path="/login" component={Auth(LoginPage, false)} />
         <Route exact path="/register" component={Auth(RegisterPage, false)} />
+        <Route exact path="/user" component={Auth(UserPage, true)} />
       </Switch>
   );
 

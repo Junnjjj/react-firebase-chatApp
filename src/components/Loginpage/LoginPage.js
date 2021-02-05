@@ -1,5 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom"
 import firebase from "../../firebase"
 
 
@@ -34,7 +35,7 @@ function LoginPage() {
 
     return (
 
-        <div class ="auth-wrapper">
+        <div className ="auth-wrapper">
             <h2 style = {{ textAlign: 'center'}}>로그인</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <label>이메일</label>
@@ -56,11 +57,12 @@ function LoginPage() {
                 {errors.password && errors.password.type === "minLength" && <p>비밀번호는 6자리 이상 이어야 합니다.</p>}
 
                 <input type="submit" disabled={Loading}/>
+                <Link style={{ color : 'gray', textDecoration:'none' }} to="register">회원 가입을 원하시면 </Link>
             
                 {errorFromSubmit && 
                     <p>{errorFromSubmit}</p>
                 }
-
+            
             </form>
         </div>
     )

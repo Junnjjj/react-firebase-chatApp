@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { useForm } from "react-hook-form";
 import firebase from "../../firebase"
+import md5 from 'md5';
 
 import { Link } from "react-router-dom"
 import LoginPage from '../Loginpage/LoginPage';
@@ -22,9 +23,9 @@ function RegisterPage() {
             setLoading(true)
             // firebase auth 로 아이디 생성
             let createdUser = await firebase.auth().createUserWithEmailAndPassword(data.email, data.password)
-            await firebase.auth().updateCurrentUser({
+            await createdUser.user.updateProfile({            
                 displayName: data.name,
-                photoURL: `/images/Image.png`
+                photoURL: `http://gravatar.com/avatar/${md5(createdUser.user.email)}?d=identicon`
             })
             //realtime database 에 저장
             await firebase.database().ref("users").child(createdUser.user.uid).set({
@@ -45,7 +46,7 @@ function RegisterPage() {
 
     return (
 
-        <div class ="auth-wrapper">
+        <div className ="auth-wrapper">
             <h2 style = {{ textAlign: 'center'}}>회원가입</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <label>이메일</label>

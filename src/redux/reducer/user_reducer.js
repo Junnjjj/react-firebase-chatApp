@@ -1,5 +1,7 @@
 import {
-    SET_USER
+    SET_USER,
+    CLEAR_USER,
+    SET_PHOTO
 } from '../actions/types'
 
 const initialUserState = {
@@ -15,7 +17,21 @@ export default function (state = initialUserState, action){
                 currentUser : action.payload,
                 isLoading: false
             }
-    
+
+        case CLEAR_USER:
+            return {
+                ...state,
+                currentUser : null,
+                isLoading: false
+            }   
+
+        case SET_PHOTO:
+            return {
+                ...state,
+                currentUser: {...state.currentUser, photoURL: action.payload},
+                isLoading: false
+            }                                   
+
         default:
             return state;
     }

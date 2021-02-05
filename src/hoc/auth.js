@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import firebase from '../firebase'
 import { useDispatch, useSelector } from "react-redux"
-import { setUser } from '../redux/actions/user_actions'
+import { setUser, clearUser } from '../redux/actions/user_actions'
 import { setLoading } from '../redux/actions/loading_actions'
 
 import Loading from '../commons/components/Loading'
@@ -32,6 +32,8 @@ export default function(SpecificComponent, option, adminRoute = null){
                     //로그인 하지 않은 상태
                     if(option){
                         dispatch(setLoading(false))
+                        // redux store 에서 유저 정보 삭제
+                        dispatch(setUser()) 
                         props.history.push('/login')
                     }
                 }
